@@ -1,16 +1,10 @@
-<!-- <?php
+<?php
 
-$con=new mysqli('localhost','root','','bootstrapcrud');
+$connection=new Mysqli('localhost','root','','bootstrapcrud');
 
 // Check connection
-if ($con) {
-    die(mysqli_error($con));
-  }
-?> -->
-<?php
-$con =new mysqli('localhost', 'root', '', 'bootstrapcrud');
-if (!$con) {
-    die('Could not connect: ' . mysql_error());
+if (!$connection) {
+    die(Mysqli_error($connection));
 }
 echo 'Connected successfully';
 ?>

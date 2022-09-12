@@ -48,7 +48,7 @@
             
             <div class="modal-footer">
                 <button type="submit" class="btn btn-dark" data-dismiss="modal" onclick="adduser()">Submit</button>
-                <button type="button" class="btn btn-danger">Close</button>
+                <button type="button" class="btn btn-danger">Delete</button>
             </div>
         </div>
     </div>
@@ -59,6 +59,7 @@
     <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#completeModal">
         A new users
     </button>
+    <div id="displayDataTable"></div>
 </div>
 
 
@@ -72,6 +73,23 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
 
 <script>
+
+//display function
+
+function displayData(){
+   var displayData="true";
+   $.ajax({
+    url:"display.php",
+    type:"post",
+    data:{
+        displaySend:displayData
+    },
+    success:function(data,status){
+        $('#displayDataTable').html(data);
+    }
+   });
+}
+
 function adduser(){
     var nameadd=$('#completename').val();
     var emailadd=$('#completeemail').val();
@@ -88,13 +106,10 @@ function adduser(){
             placeSend:placeadd
         },
 
-        success:function(data){
-            //
-            console.log('status');
-        },
-        error:function(data){
-            //
-            console.log('status not');
+        success:function(data,status){
+
+        //   console.log(status);
+        displayData();
         }
     });
 }
